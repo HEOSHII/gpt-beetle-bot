@@ -1,8 +1,11 @@
+import express from 'express';
 import TelegramBot from 'node-telegram-bot-api';
 import OpenAI from 'openai';
 import dotenv from 'dotenv';
 
 dotenv.config();
+
+const app = express();
 
 const bot = new TelegramBot(process.env.API_KEY_BOT, {
 	polling: true,
@@ -51,4 +54,10 @@ bot.on('text', async msg => {
 		});
 		console.log(error);
 	}
+});
+
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+	console.log(`Server is listening on port ${PORT}`);
 });
