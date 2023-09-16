@@ -31,7 +31,7 @@ const getChatAnswer = async ({ content, language = 'en' }) => {
 	return response.choices[0].message.content;
 };
 
-bot.on('message', msg => console.log(msg));
+console.log('Bot has been started...');
 
 bot.on('polling_error', err => console.log(err?.data?.error?.message));
 
