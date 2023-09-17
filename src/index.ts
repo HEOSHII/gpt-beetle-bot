@@ -35,7 +35,7 @@ bot.on('text', async msg => {
 		if (!isAdmin(msg.chat.id)) {
 			await fs.appendFile(
 				'./logs/messages.log',
-				`Date: ${new Date()}\nUser: ${msg.from?.first_name}  (@${
+				`Date: ${new Date()}\nUser: ${msg.from?.first_name} (@${
 					msg.from?.username
 				})\nMessage: "${chatMessage}";\nAnswer: "${chatAnswer}"\n–––––––––––––––\n`,
 			);
@@ -43,7 +43,7 @@ bot.on('text', async msg => {
 	} catch (error) {
 		await fs.appendFile(
 			'./logs/errors.log',
-			`Date: ${new Date()}\nUser: ${msg.from?.first_name}  (@${msg.from?.username})\nMessage: "${
+			`Date: ${new Date()}\nUser: ${msg.from?.first_name} (@${msg.from?.username})\nMessage: "${
 				msg.text
 			}";\nError: "${error}"\n–––––––––––––––\n`,
 		);
