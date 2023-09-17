@@ -7,6 +7,7 @@
 		"build": "tsc",
 		"pm2": "pm2 start ./dist/index.js --name gpt_beetle_bot",
 		"bot": "npm run build && npm run pm2",
+		"stop": "pm2 stop gpt_beetle_bot",
 		"dev": "ts-node ./src/index.ts"
 	},
 	"author": "heoshii <george.shiryaev@gmail.com",
