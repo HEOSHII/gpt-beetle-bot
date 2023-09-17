@@ -27,6 +27,7 @@ bot.on('text', async msg => {
 
 		const chatAnswer = await ChatGPTHelper.getChatAnswer(chatMessage);
 		await bot.sendMessage(msg.chat.id, chatAnswer);
+		console.log(msg.chat.id);
 	} catch (error) {
 		await bot.sendMessage(msg.chat.id, `Sorry, something went wrong! Please, try later.`);
 		console.log(error);
