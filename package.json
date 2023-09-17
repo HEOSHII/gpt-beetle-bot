@@ -4,7 +4,10 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"bot": "ts-node ./src/index.ts "
+		"build": "tsc",
+		"pm2": "pm2 start ./dist/index.js --name gpt_beetle_bot",
+		"bot": "npm run build && npm run pm2",
+		"dev": "ts-node ./src/index.ts"
 	},
 	"author": "heoshii <george.shiryaev@gmail.com",
 	"license": "ISC",
