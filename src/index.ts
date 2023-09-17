@@ -6,7 +6,6 @@ import fs from 'fs/promises';
 dotenv.config();
 
 const adminID = Number(process.env.ADMIN_ID || 0);
-const isAdmin = (id: number) => id === adminID;
 
 const bot = new TelegramBot(process.env.API_KEY_BOT || '', {
 	polling: true,
@@ -32,14 +31,12 @@ bot.on('text', async msg => {
 		const chatAnswer = await ChatGPTHelper.getChatAnswer(chatMessage);
 		await bot.sendMessage(msg.chat.id, chatAnswer);
 
-		if (!isAdmin(msg.chat.id)) {
-			await fs.appendFile(
-				'./logs/messages.log',
-				`Date: ${new Date()}\nUser: ${msg.from?.first_name} (@${
-					msg.from?.username
-				})\nMessage: "${chatMessage}";\nAnswer: "${chatAnswer}"\n–––––––––––––––\n`,
-			);
-		}
+		await fs.appendFile(
+			'./logs/messages.log',
+			`Date: ${new Date()}\nUser: ${msg.from?.first_name} (@${
+				msg.from?.username
+			})\nMessage: "${chatMessage}";\nAnswer: "${chatAnswer}"\n–––––––––––––––\n`,
+		);
 	} catch (error) {
 		await fs.appendFile(
 			'./logs/errors.log',
